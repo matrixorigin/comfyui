@@ -32080,7 +32080,8 @@ class ComfyApi extends EventTarget {
     this.socket.addEventListener("open", () => {
       opened = true;
       if (isReconnect) {
-        this.dispatchEvent(new CustomEvent("reconnected"));
+        console.log("mgReconnected");
+        //this.dispatchEvent(new CustomEvent("reconnected"));
       }
     });
     this.socket.addEventListener("error", () => {
@@ -32096,7 +32097,8 @@ class ComfyApi extends EventTarget {
       }, 300);
       if (opened) {
         this.dispatchEvent(new CustomEvent("status", { detail: null }));
-        this.dispatchEvent(new CustomEvent("reconnecting"));
+        console.log("mgReconnecting");
+        //this.dispatchEvent(new CustomEvent("reconnecting"));
       }
     });
     this.socket.addEventListener("message", (event2) => {
