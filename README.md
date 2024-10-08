@@ -1,6 +1,6 @@
 <div align="center">
 
-# ComfyUI
+# ComfyUI(This repo init from official tag version v0.2.2)
 **The most powerful and modular diffusion model GUI and backend.**
 
 
