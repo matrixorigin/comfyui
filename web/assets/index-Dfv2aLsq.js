@@ -1,3 +1,4 @@
+const __mg_model_type = "MGSD"; // ENUM: MGSD or MGFLUX
 const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./index-CrROdkG4.js","./index-BRhY6FpL.css","./userSelection-DSpF-zVD.js","./userSelection-CF-ymHZW.css"])))=>i.map(i=>d[i]);
 var __defProp2 = Object.defineProperty;
 var __name = (target, value3) => __defProp2(target, "name", { value: value3, configurable: true });
@@ -72442,141 +72443,145 @@ window.comfyAPI.widgets.addValueControlWidget = addValueControlWidget;
 window.comfyAPI.widgets.addValueControlWidgets = addValueControlWidgets;
 window.comfyAPI.widgets.initWidgets = initWidgets;
 window.comfyAPI.widgets.ComfyWidgets = ComfyWidgets;
-const defaultGraph = {
-  last_node_id: 9,
-  last_link_id: 9,
-  nodes: [
-    {
-      id: 7,
-      type: "CLIPTextEncode",
-      pos: [413, 389],
-      size: [425.27801513671875, 180.6060791015625],
-      flags: {},
-      order: 3,
-      mode: 0,
-      inputs: [{ name: "clip", type: "CLIP", link: 5 }],
-      outputs: [
+if (__mg_model_type == "MGSD") {
+    const defaultGraph = {
+      last_node_id: 9,
+      last_link_id: 9,
+      nodes: [
         {
-          name: "CONDITIONING",
-          type: "CONDITIONING",
-          links: [6],
-          slot_index: 0
-        }
-      ],
-      properties: {},
-      widgets_values: ["text, watermark"]
-    },
-    {
-      id: 6,
-      type: "CLIPTextEncode",
-      pos: [415, 186],
-      size: [422.84503173828125, 164.31304931640625],
-      flags: {},
-      order: 2,
-      mode: 0,
-      inputs: [{ name: "clip", type: "CLIP", link: 3 }],
-      outputs: [
+          id: 7,
+          type: "CLIPTextEncode",
+          pos: [413, 389],
+          size: [425.27801513671875, 180.6060791015625],
+          flags: {},
+          order: 3,
+          mode: 0,
+          inputs: [{ name: "clip", type: "CLIP", link: 5 }],
+          outputs: [
+            {
+              name: "CONDITIONING",
+              type: "CONDITIONING",
+              links: [6],
+              slot_index: 0
+            }
+          ],
+          properties: {},
+          widgets_values: ["text, watermark"]
+        },
         {
-          name: "CONDITIONING",
-          type: "CONDITIONING",
-          links: [4],
-          slot_index: 0
+          id: 6,
+          type: "CLIPTextEncode",
+          pos: [415, 186],
+          size: [422.84503173828125, 164.31304931640625],
+          flags: {},
+          order: 2,
+          mode: 0,
+          inputs: [{ name: "clip", type: "CLIP", link: 3 }],
+          outputs: [
+            {
+              name: "CONDITIONING",
+              type: "CONDITIONING",
+              links: [4],
+              slot_index: 0
+            }
+          ],
+          properties: {},
+          widgets_values: [
+            "beautiful scenery nature glass bottle landscape, , purple galaxy bottle,"
+          ]
+        },
+        {
+          id: 5,
+          type: "EmptyLatentImage",
+          pos: [473, 609],
+          size: [315, 106],
+          flags: {},
+          order: 1,
+          mode: 0,
+          outputs: [{ name: "LATENT", type: "LATENT", links: [2], slot_index: 0 }],
+          properties: {},
+          widgets_values: [512, 512, 1]
+        },
+        {
+          id: 3,
+          type: "KSampler",
+          pos: [863, 186],
+          size: [315, 262],
+          flags: {},
+          order: 4,
+          mode: 0,
+          inputs: [
+            { name: "model", type: "MODEL", link: 1 },
+            { name: "positive", type: "CONDITIONING", link: 4 },
+            { name: "negative", type: "CONDITIONING", link: 6 },
+            { name: "latent_image", type: "LATENT", link: 2 }
+          ],
+          outputs: [{ name: "LATENT", type: "LATENT", links: [7], slot_index: 0 }],
+          properties: {},
+          widgets_values: [156680208700286, true, 20, 8, "euler", "normal", 1]
+        },
+        {
+          id: 8,
+          type: "VAEDecode",
+          pos: [1209, 188],
+          size: [210, 46],
+          flags: {},
+          order: 5,
+          mode: 0,
+          inputs: [
+            { name: "samples", type: "LATENT", link: 7 },
+            { name: "vae", type: "VAE", link: 8 }
+          ],
+          outputs: [{ name: "IMAGE", type: "IMAGE", links: [9], slot_index: 0 }],
+          properties: {}
+        },
+        {
+          id: 9,
+          type: "SaveImage",
+          pos: [1451, 189],
+          size: [210, 26],
+          flags: {},
+          order: 6,
+          mode: 0,
+          inputs: [{ name: "images", type: "IMAGE", link: 9 }],
+          properties: {}
+        },
+        {
+          id: 4,
+          type: "CheckpointLoaderSimple",
+          pos: [26, 474],
+          size: [315, 98],
+          flags: {},
+          order: 0,
+          mode: 0,
+          outputs: [
+            { name: "MODEL", type: "MODEL", links: [1], slot_index: 0 },
+            { name: "CLIP", type: "CLIP", links: [3, 5], slot_index: 1 },
+            { name: "VAE", type: "VAE", links: [8], slot_index: 2 }
+          ],
+          properties: {},
+          widgets_values: ["v1-5-pruned-emaonly.ckpt"]
         }
-      ],
-      properties: {},
-      widgets_values: [
-        "beautiful scenery nature glass bottle landscape, , purple galaxy bottle,"
-      ]
-    },
-    {
-      id: 5,
-      type: "EmptyLatentImage",
-      pos: [473, 609],
-      size: [315, 106],
-      flags: {},
-      order: 1,
-      mode: 0,
-      outputs: [{ name: "LATENT", type: "LATENT", links: [2], slot_index: 0 }],
-      properties: {},
-      widgets_values: [512, 512, 1]
-    },
-    {
-      id: 3,
-      type: "KSampler",
-      pos: [863, 186],
-      size: [315, 262],
-      flags: {},
-      order: 4,
-      mode: 0,
-      inputs: [
-        { name: "model", type: "MODEL", link: 1 },
-        { name: "positive", type: "CONDITIONING", link: 4 },
-        { name: "negative", type: "CONDITIONING", link: 6 },
-        { name: "latent_image", type: "LATENT", link: 2 }
-      ],
-      outputs: [{ name: "LATENT", type: "LATENT", links: [7], slot_index: 0 }],
-      properties: {},
-      widgets_values: [156680208700286, true, 20, 8, "euler", "normal", 1]
-    },
-    {
-      id: 8,
-      type: "VAEDecode",
-      pos: [1209, 188],
-      size: [210, 46],
-      flags: {},
-      order: 5,
-      mode: 0,
-      inputs: [
-        { name: "samples", type: "LATENT", link: 7 },
-        { name: "vae", type: "VAE", link: 8 }
-      ],
-      outputs: [{ name: "IMAGE", type: "IMAGE", links: [9], slot_index: 0 }],
-      properties: {}
-    },
-    {
-      id: 9,
-      type: "SaveImage",
-      pos: [1451, 189],
-      size: [210, 26],
-      flags: {},
-      order: 6,
-      mode: 0,
-      inputs: [{ name: "images", type: "IMAGE", link: 9 }],
-      properties: {}
-    },
-    {
-      id: 4,
-      type: "CheckpointLoaderSimple",
-      pos: [26, 474],
-      size: [315, 98],
-      flags: {},
-      order: 0,
-      mode: 0,
-      outputs: [
-        { name: "MODEL", type: "MODEL", links: [1], slot_index: 0 },
-        { name: "CLIP", type: "CLIP", links: [3, 5], slot_index: 1 },
-        { name: "VAE", type: "VAE", links: [8], slot_index: 2 }
-      ],
-      properties: {},
-      widgets_values: ["v1-5-pruned-emaonly.ckpt"]
-    }
-  ],
-  links: [
-    [1, 4, 0, 3, 0, "MODEL"],
-    [2, 5, 0, 3, 3, "LATENT"],
-    [3, 4, 1, 6, 0, "CLIP"],
-    [4, 6, 0, 3, 1, "CONDITIONING"],
-    [5, 4, 1, 7, 0, "CLIP"],
-    [6, 7, 0, 3, 2, "CONDITIONING"],
-    [7, 3, 0, 8, 0, "LATENT"],
-    [8, 4, 2, 8, 1, "VAE"],
-    [9, 8, 0, 9, 0, "IMAGE"]
-  ],
-  groups: [],
-  config: {},
-  extra: {},
-  version: 0.4
-};
+          ],
+          links: [
+            [1, 4, 0, 3, 0, "MODEL"],
+            [2, 5, 0, 3, 3, "LATENT"],
+            [3, 4, 1, 6, 0, "CLIP"],
+            [4, 6, 0, 3, 1, "CONDITIONING"],
+            [5, 4, 1, 7, 0, "CLIP"],
+            [6, 7, 0, 3, 2, "CONDITIONING"],
+            [7, 3, 0, 8, 0, "LATENT"],
+            [8, 4, 2, 8, 1, "VAE"],
+            [9, 8, 0, 9, 0, "IMAGE"]
+          ],
+          groups: [],
+          config: {},
+          extra: {},
+          version: 0.4
+        };
+} else {
+    const defaultGraph = {"last_node_id":36,"last_link_id":57,"nodes":[{"id":33,"type":"CLIPTextEncode","pos":[390,400],"size":{"0":422.84503173828125,"1":164.31304931640625},"flags":{"collapsed":true},"order":4,"mode":0,"inputs":[{"name":"clip","type":"CLIP","link":54,"slot_index":0,"label":"clip"}],"outputs":[{"name":"CONDITIONING","type":"CONDITIONING","links":[55],"slot_index":0,"label":"CONDITIONING"}],"title":"CLIP Text Encode (Negative Prompt)","properties":{"Node name for S&R":"CLIPTextEncode"},"widgets_values":[""],"color":"#322","bgcolor":"#533"},{"id":27,"type":"EmptySD3LatentImage","pos":[471,455],"size":{"0":315,"1":106},"flags":{},"order":0,"mode":0,"outputs":[{"name":"LATENT","type":"LATENT","links":[51],"shape":3,"slot_index":0,"label":"LATENT"}],"properties":{"Node name for S&R":"EmptySD3LatentImage"},"widgets_values":[1024,1024,1],"color":"#323","bgcolor":"#535"},{"id":35,"type":"FluxGuidance","pos":[576,96],"size":{"0":211.60000610351562,"1":58},"flags":{},"order":5,"mode":0,"inputs":[{"name":"conditioning","type":"CONDITIONING","link":56,"label":"conditioning"}],"outputs":[{"name":"CONDITIONING","type":"CONDITIONING","links":[57],"shape":3,"slot_index":0,"label":"CONDITIONING"}],"properties":{"Node name for S&R":"FluxGuidance"},"widgets_values":[3.5]},{"id":8,"type":"VAEDecode","pos":[1151,195],"size":{"0":210,"1":46},"flags":{},"order":7,"mode":0,"inputs":[{"name":"samples","type":"LATENT","link":52,"label":"samples"},{"name":"vae","type":"VAE","link":46,"label":"vae"}],"outputs":[{"name":"IMAGE","type":"IMAGE","links":[9],"slot_index":0,"label":"IMAGE"}],"properties":{"Node name for S&R":"VAEDecode"}},{"id":34,"type":"Note","pos":[831,501],"size":{"0":282.8617858886719,"1":164.08004760742188},"flags":{},"order":1,"mode":0,"properties":{"text":""},"widgets_values":["Note that Flux dev and schnell do not have any negative prompt so CFG should be set to 1.0. Setting CFG to 1.0 means the negative prompt is ignored."],"color":"#432","bgcolor":"#653"},{"id":30,"type":"CheckpointLoaderSimple","pos":[48,192],"size":{"0":315,"1":98},"flags":{},"order":2,"mode":0,"outputs":[{"name":"MODEL","type":"MODEL","links":[47],"shape":3,"slot_index":0,"label":"MODEL"},{"name":"CLIP","type":"CLIP","links":[45,54],"shape":3,"slot_index":1,"label":"CLIP"},{"name":"VAE","type":"VAE","links":[46],"shape":3,"slot_index":2,"label":"VAE"}],"properties":{"Node name for S&R":"CheckpointLoaderSimple"},"widgets_values":["flux1-dev-fp8.safetensors"]},{"id":9,"type":"SaveImage","pos":[1375,194],"size":{"0":985.3012084960938,"1":1060.3828125},"flags":{},"order":8,"mode":0,"inputs":[{"name":"images","type":"IMAGE","link":9,"label":"images"}],"properties":{},"widgets_values":["ComfyUI"]},{"id":6,"type":"CLIPTextEncode","pos":[384,192],"size":{"0":422.84503173828125,"1":164.31304931640625},"flags":{},"order":3,"mode":0,"inputs":[{"name":"clip","type":"CLIP","link":45,"label":"clip"}],"outputs":[{"name":"CONDITIONING","type":"CONDITIONING","links":[56],"slot_index":0,"label":"CONDITIONING"}],"title":"CLIP Text Encode (Positive Prompt)","properties":{"Node name for S&R":"CLIPTextEncode"},"widgets_values":["cute anime girl with massive fluffy fennec ears and a big fluffy tail blonde messy long hair blue eyes wearing a maid outfit with a long black gold leaf pattern dress and a white apron mouth open placing a fancy black forest cake with candles on top of a dinner table of an old dark Victorian mansion lit by candlelight with a bright window to the foggy forest and very expensive stuff everywhere there are paintings on the walls"],"color":"#232","bgcolor":"#353"},{"id":31,"type":"KSampler","pos":[816,192],"size":{"0":315,"1":262},"flags":{},"order":6,"mode":0,"inputs":[{"name":"model","type":"MODEL","link":47,"label":"model"},{"name":"positive","type":"CONDITIONING","link":57,"label":"positive"},{"name":"negative","type":"CONDITIONING","link":55,"label":"negative"},{"name":"latent_image","type":"LATENT","link":51,"label":"latent_image"}],"outputs":[{"name":"LATENT","type":"LATENT","links":[52],"shape":3,"slot_index":0,"label":"LATENT"}],"properties":{"Node name for S&R":"KSampler"},"widgets_values":[972054013131368,"randomize",20,1,"euler","simple",1]}],"links":[[9,8,0,9,0,"IMAGE"],[45,30,1,6,0,"CLIP"],[46,30,2,8,1,"VAE"],[47,30,0,31,0,"MODEL"],[51,27,0,31,3,"LATENT"],[52,31,0,8,0,"LATENT"],[54,30,1,33,0,"CLIP"],[55,33,0,31,2,"CONDITIONING"],[56,6,0,35,0,"CONDITIONING"],[57,35,0,31,1,"CONDITIONING"]],"groups":[],"config":{},"extra":{"ds":{"scale":1,"offset":[56.42885371989581,-14.294664184783073]}},"version":0.4};
+}
 window.comfyAPI = window.comfyAPI || {};
 window.comfyAPI.defaultGraph = window.comfyAPI.defaultGraph || {};
 window.comfyAPI.defaultGraph.defaultGraph = defaultGraph;
