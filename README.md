@@ -1,6 +1,9 @@
 <div align="center">
 
-# ComfyUI(This repo init from official tag version v0.2.2)
+# ComfyUI
+The main branch inited from official tag version v0.2.2.
+The sd branch is used to build SD image.
+The flux branch is used to build FLUX image.
 **The most powerful and modular diffusion model GUI and backend.**
 
 
